@@ -1,250 +1,839 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dự Đoán Tài Xỉu MD5 - Pro</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: #f4f7fb;
-      font-family: 'Quicksand', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #333;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .container {
-      background-color: #ffffff;
-      border-radius: 20px;
-      padding: 30px;
-      width: 90%;
-      max-width: 500px;
-      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-      animation: slideUp 0.7s ease;
-      transition: background-color 0.3s ease;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #222;
-    }
-
-    input[type="text"] {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      border: none;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      background: #f0f0f3;
-      box-shadow: inset 5px 5px 10px #d1d9e6,
-                  inset -5px -5px 10px #ffffff;
-      outline: none;
-      color: #333;
-      transition: background 0.3s ease;
-    }
-
-    input[type="text"]:focus {
-      background: #eef3f8;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      color: white;
-      background: linear-gradient(135deg, #56ccf2, #2f80ed);
-      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(0, 123, 255, 0.35);
-    }
-
-    button.loading {
-      background: #ccc;
-      cursor: wait;
-    }
-
-    .result-box {
-      background: #ffffff;
-      margin-top: 25px;
-      padding: 20px;
-      border-radius: 15px;
-      border: 1px solid #e0e0e0;
-      animation: fadeInResult 0.5s ease;
-      color: #333;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    }
-
-    .result-box div {
-      margin: 10px 0;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes fadeInResult {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .error {
-      color: #d9534f;
-      font-size: 14px;
-      margin-top: 10px;
-      text-align: center; /* Căn giữa thông báo */
-      padding: 5px 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Lại Bài Cũ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #ffffff00, #ffffff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+        }
+        
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 2.8rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #fefefe, #fcfcfc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 4px;
+            background: linear-gradient(to right, #000000, #000000);
+            border-radius: 2px;
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .info-value {
+            font-size: 1.8rem;
+            margin-top: 5px;
+            color: #f5f5f5;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+        
+        .hint-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            font-style: italic;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #000000;
+        }
+        
+        .word-display {
+            font-size: 2.5rem;
+            letter-spacing: 15px;
+            margin: 30px 0;
+            font-weight: bold;
+            color: white;
+            min-height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .word-display::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .word-display.reveal::before {
+            left: 100%;
+        }
+        
+        .alphabet-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        
+        .letter {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(145deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .letter:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(145deg, #2575fc, #6a11cb);
+        }
+        
+        .letter:disabled {
+            background: linear-gradient(145deg, #555, #777);
+            transform: none;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .letter.correct {
+            background: linear-gradient(145deg, #00b09b, #96c93d);
+            animation: pulse 0.5s;
+        }
+        
+        .letter.incorrect {
+            background: linear-gradient(145deg, #ff416c, #ff4b2b);
+            animation: shake 0.5s;
+        }
+        
+        .game-controls {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            padding: 12px 25px;
+            background: linear-gradient(to right, #b70000, #feb47b);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .control-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .control-btn:disabled {
+            background: linear-gradient(to right, #777, #999);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .message {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: bold;
+            display: none;
+            animation: fadeIn 0.5s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .success {
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            color: white;
+            display: block;
+        }
+        
+        .error {
+            background: linear-gradient(to right, #d20000, #ff4b2b);
+            color: white;
+            display: block;
+        }
+        
+        .hangman-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        
+        .hangman-drawing {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .hangman-part {
+            position: absolute;
+            background: white;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .base { width: 150px; height: 10px; bottom: 0; left: 75px; }
+        .pole { width: 10px; height: 250px; bottom: 0; left: 100px; }
+        .top { width: 100px; height: 10px; top: 0; left: 100px; }
+        .rope { width: 5px; height: 40px; top: 10px; left: 195px; }
+        .head { 
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            top: 50px; 
+            left: 170px; 
+            border: 5px solid white;
+            background: transparent;
+        }
+        .body { width: 5px; height: 80px; top: 100px; left: 195px; }
+        .left-arm { width: 50px; height: 5px; top: 120px; left: 150px; transform: rotate(45deg); }
+        .right-arm { width: 50px; height: 5px; top: 120px; left: 195px; transform: rotate(-45deg); }
+        .left-leg { width: 50px; height: 5px; top: 180px; left: 150px; transform: rotate(30deg); }
+        .right-leg { width: 50px; height: 5px; top: 180px; left: 195px; transform: rotate(-30deg); }
+        
+        .hangman-part:not(.base):not(.pole) {
+            display: none;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffcc00;
+            opacity: 0;
+        }
+        
+        .sound-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sound-control:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes confettiFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .letter {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .word-display {
+                font-size: 1.8rem;
+                letter-spacing: 8px;
+            }
+            
+            .hangman-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .game-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .control-btn {
+                width: 80%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .letter {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .word-display {
+                font-size: 1.5rem;
+                letter-spacing: 5px;
+            }
+            
+            .hangman-container {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container" id="keyInputScreen">
-    <h1>Nhập Key Để Tiếp Tục</h1>
-    <input type="text" id="keyInput" placeholder="Nhập khóa (concacnek)">
-    <button onclick="verifyKey()">🔐 Xác nhận Key</button>
-    <div id="keyError" class="error" style="display: none;">🔐 Key không đúng, vui lòng thử lại!</div>
-  </div>
+    <div class="container">
+        <div class="sound-control" id="sound-control">
+            <i class="fas fa-volume-up"></i>
+        </div>
+        
+        <h1><i class="fas fa-home"></i> Family Life</h1>
+        
+        <div class="game-info">
+            <div class="info-item">
+                <span>Score</span>
+                <div class="info-value" id="score">0</div>
+            </div>
+            <div class="info-item">
+                <span>Level</span>
+                <div class="info-value" id="level">1</div>
+            </div>
+            <div class="info-item">
+                <span>Lần Sai</span>
+                <div class="info-value" id="wrong-attempts">0/6</div>
+            </div>
+        </div>
+        
+        <div class="hint-section">
+            <p><i class="fas fa-lightbulb"></i> Gợi ý: <span id="hint">Đang tải...</span></p>
+        </div>
+        
+        <div class="hangman-container">
+            <div class="hangman-drawing">
+                <div class="hangman-part base"></div>
+                <div class="hangman-part pole"></div>
+                <div class="hangman-part top"></div>
+                <div class="hangman-part rope"></div>
+                <div class="hangman-part head"></div>
+                <div class="hangman-part body"></div>
+                <div class="hangman-part left-arm"></div>
+                <div class="hangman-part right-arm"></div>
+                <div class="hangman-part left-leg"></div>
+                <div class="hangman-part right-leg"></div>
+            </div>
+        </div>
+        
+        <div class="word-display" id="word-display">
+            <!-- Từ sẽ hiển thị ở đây -->
+        </div>
+        
+        <div class="alphabet-container" id="alphabet-container">
+            <!-- Các chữ cái sẽ được tạo bằng JavaScript -->
+        </div>
+        
+        <div class="game-controls">
+            <button class="control-btn" id="hint-button">
+                <i class="fas fa-lightbulb"></i> Gợi ý
+            </button>
+            <button class="control-btn" id="skip-button">
+                <i class="fas fa-forward"></i> Tiếp Tục
+            </button>
+            <button class="control-btn" id="reset-button">
+                <i class="fas fa-redo"></i> Chơi lại
+            </button>
+        </div>
+        
+        <div class="message" id="message">
+            <!-- Thông báo kết quả -->
+        </div>
+    </div>
 
-  <div class="container hidden" id="md5InputScreen">
-    <h1>Chương Trình Dự Đoán Tài Xỉu</h1>
-    <input type="text" id="md5Input" placeholder="Nhập chuỗi MD5 (32 ký tự)">
-    <button onclick="runTool()">🚀 Phân tích</button>
-    <div id="resultBox" class="result-box" style="display: none;"></div>
-    <audio id="sound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
-  </div>
-
-  <script>
-    function verifyKey() {
-      const key = document.getElementById("keyInput").value.trim().toLowerCase();
-      const keyInputScreen = document.getElementById("keyInputScreen");
-      const md5InputScreen = document.getElementById("md5InputScreen");
-      const keyError = document.getElementById("keyError");
-
-      if (key === "concacnek") {
-        keyInputScreen.classList.add("hidden");
-        md5InputScreen.classList.remove("hidden");
-        keyError.style.display = 'none';  // Ẩn thông báo lỗi nếu key đúng
-      } else {
-        keyError.style.display = 'block';  // Hiển thị thông báo lỗi nếu key sai
-      }
-    }
-
-    function runTool() {
-      const md5 = document.getElementById("md5Input").value.trim().toLowerCase();
-      const resultBox = document.getElementById("resultBox");
-      const sound = document.getElementById("sound");
-      const button = document.querySelector("button");
-
-      if (!md5 || md5.length !== 32 || !/^[a-f0-9]{32}$/.test(md5)) {
-        resultBox.style.display = 'block';
-        resultBox.innerHTML = "<div style='color: #d9534f;'>❌ Vui lòng nhập đúng chuỗi MD5 (32 ký tự hex).</div>";
-        return;
-      }
-
-      button.disabled = true;
-      button.classList.add("loading");
-      button.textContent = "🔄 Đang phân tích...";
-
-      sound.play();
-      resultBox.style.display = 'block';
-      resultBox.innerHTML = "<div style='color: #888;'>⏳ Đang xử lý dữ liệu...</div>";
-
-      setTimeout(() => {
-        const digits = md5.replace(/[^1-6]/g, '').split('').map(Number);
-        if (digits.length < 3) {
-          resultBox.innerHTML = "<div style='color:#f0ad4e'>⚠️ Không đủ số hợp lệ (1-6) để phân tích.</div>";
-          resetButton();
-          return;
+    <script>
+        // Danh sách từ vựng và gợi ý - Chủ đề gia đình
+        const wordList = [
+            { word: "BREADWINNER", hint: "Người gánh vác chính trong gia đình" },
+            { word: "HEAVY LIFTING", hint: "Hành động dùng sức để di chuyển đồ nặng" },
+            { word: "SPLIT", hint: "Hành động làm cho một thứ không còn chung, trở thành nhiều phần riêng biệt" },
+            { word: "HOMEMAKER", hint: "Người đảm nhận công việc trong gia đình" },
+            { word: "LAUNDRY", hint: "Hành động làm sạch trang phục, vải vóc" }
+        ];
+        
+        // Biến trạng thái game
+        let currentWord = "";
+        let currentHint = "";
+        let guessedLetters = [];
+        let wrongAttempts = 0;
+        let score = 0;
+        let level = 1;
+        let maxWrongAttempts = 6;
+        let hintUsed = false;
+        let soundEnabled = true;
+        
+        // Các phần tử DOM
+        const wordDisplayElement = document.getElementById("word-display");
+        const hintElement = document.getElementById("hint");
+        const alphabetContainer = document.getElementById("alphabet-container");
+        const scoreElement = document.getElementById("score");
+        const levelElement = document.getElementById("level");
+        const wrongAttemptsElement = document.getElementById("wrong-attempts");
+        const messageElement = document.getElementById("message");
+        const hintButton = document.getElementById("hint-button");
+        const skipButton = document.getElementById("skip-button");
+        const resetButton = document.getElementById("reset-button");
+        const hangmanParts = document.querySelectorAll('.hangman-part');
+        const soundControl = document.getElementById("sound-control");
+        
+        // Tạo âm thanh bằng Web Audio API
+        function createSound(frequency, duration, type = 'sine') {
+            return function() {
+                if (!soundEnabled) return;
+                
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.value = frequency;
+                    oscillator.type = type;
+                    
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + duration);
+                } catch (e) {
+                    console.log("Lỗi phát âm thanh: ", e);
+                }
+            };
         }
-
-        const freq = {};
-        digits.forEach(d => freq[d] = (freq[d] || 0) + 1);
-        const allCombos = new Set();
-
-        for (let a of digits) {
-          for (let b of digits) {
-            for (let c of digits) {
-              const count = {};
-              count[a] = (count[a] || 0) + 1;
-              count[b] = (count[b] || 0) + 1;
-              count[c] = (count[c] || 0) + 1;
-              if (Object.keys(count).every(n => count[n] <= (freq[n] || 0))) {
-                let combo = [a, b, c].sort((x, y) => x - y).join("-");
-                allCombos.add(combo);
-              }
+        
+        // Định nghĩa các âm thanh
+        const correctSound = createSound(523.25, 0.3, 'sine'); // Âm C5
+        const wrongSound = createSound(220, 0.5, 'sawtooth'); // Âm thấp
+        const winSound = createSound(1046.5, 0.8, 'square'); // Âm C6
+        const loseSound = createSound(110, 1.0, 'triangle'); // Âm rất thấp
+        const clickSound = createSound(659.25, 0.1, 'sine'); // Âm E5
+        
+        // Khởi tạo game
+        function initGame() {
+            // Chọn từ ngẫu nhiên
+            const randomIndex = Math.floor(Math.random() * wordList.length);
+            currentWord = wordList[randomIndex].word;
+            currentHint = wordList[randomIndex].hint;
+            
+            // Reset trạng thái
+            guessedLetters = [];
+            wrongAttempts = 0;
+            hintUsed = false;
+            
+            // Hiển thị từ với dấu gạch dưới
+            displayWord();
+            
+            // Hiển thị gợi ý
+            hintElement.textContent = currentHint;
+            
+            // Cập nhật giao diện
+            updateUI();
+            
+            // Tạo bảng chữ cái
+            createAlphabetButtons();
+            
+            // Ẩn thông báo
+            messageElement.className = "message";
+            messageElement.textContent = "";
+            
+            // Reset hình treo cổ
+            resetHangman();
+            
+            // Kích hoạt nút gợi ý
+            hintButton.disabled = false;
+        }
+        
+        // Hiển thị từ với các chữ cái đã đoán
+        function displayWord() {
+            const wordArray = currentWord.split("");
+            const displayArray = wordArray.map(letter => 
+                guessedLetters.includes(letter) ? letter : "_"
+            );
+            wordDisplayElement.textContent = displayArray.join(" ");
+            
+            // Hiệu ứng khi từ được hiển thị
+            wordDisplayElement.classList.add("reveal");
+            setTimeout(() => {
+                wordDisplayElement.classList.remove("reveal");
+            }, 500);
+        }
+        
+        // Tạo các nút chữ cái
+        function createAlphabetButtons() {
+            alphabetContainer.innerHTML = "";
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            
+            for (let letter of alphabet) {
+                const button = document.createElement("button");
+                button.textContent = letter;
+                button.className = "letter";
+                button.addEventListener("click", () => handleGuess(letter));
+                alphabetContainer.appendChild(button);
             }
-          }
         }
-
-        const combos = Array.from(allCombos);
-        let outputs = combos.map(combo => {
-          const [x, y, z] = combo.split("-").map(Number);
-          const sum = x + y + z;
-          return { combo, type: sum >= 11 ? 'Tài' : 'Xỉu' };
+        
+        // Xử lý khi người chơi đoán một chữ cái
+        function handleGuess(letter) {
+            clickSound();
+            
+            // Nếu chữ cái đã được đoán rồi, không làm gì
+            if (guessedLetters.includes(letter)) return;
+            
+            // Thêm chữ cái vào danh sách đã đoán
+            guessedLetters.push(letter);
+            
+            // Kiểm tra xem chữ cái có trong từ không
+            if (currentWord.includes(letter)) {
+                // Đoán đúng
+                correctSound();
+                highlightLetterButton(letter, "correct");
+                displayWord();
+                
+                // Kiểm tra xem đã đoán hết từ chưa
+                if (checkWin()) {
+                    handleWin();
+                }
+            } else {
+                // Đoán sai
+                wrongSound();
+                highlightLetterButton(letter, "incorrect");
+                wrongAttempts++;
+                updateHangman();
+                
+                // Kiểm tra xem đã thua chưa
+                if (wrongAttempts >= maxWrongAttempts) {
+                    handleLoss();
+                }
+            }
+            
+            // Vô hiệu hóa nút chữ cái đã chọn
+            disableLetterButton(letter);
+            updateUI();
+        }
+        
+        // Kiểm tra xem người chơi đã thắng chưa
+        function checkWin() {
+            const wordArray = currentWord.split("");
+            return wordArray.every(letter => guessedLetters.includes(letter));
+        }
+        
+        // Xử lý khi thắng
+        function handleWin() {
+            winSound();
+            score += 10 * level;
+            messageElement.textContent = `Chúc mừng! Bạn đã đoán đúng từ "${currentWord}".`;
+            messageElement.className = "message success";
+            
+            // Hiệu ứng confetti
+            createConfetti();
+            
+            // Tăng cấp độ sau mỗi 3 từ đúng
+            if (score % 30 === 0) {
+                level++;
+                messageElement.textContent += ` Bạn đã lên cấp ${level}!`;
+            }
+            
+            // Vô hiệu hóa tất cả nút chữ cái
+            disableAllLetterButtons();
+            
+            // Cập nhật UI
+            updateUI();
+        }
+        
+        // Xử lý khi thua
+        function handleLoss() {
+            loseSound();
+            messageElement.textContent = `Rất tiếc! Từ đúng là "${currentWord}". Thử lại nhé!`;
+            messageElement.className = "message error";
+            
+            // Hiển thị toàn bộ từ
+            wordDisplayElement.textContent = currentWord.split("").join(" ");
+            
+            // Vô hiệu hóa tất cả nút chữ cái
+            disableAllLetterButtons();
+        }
+        
+        // Vô hiệu hóa nút chữ cái đã chọn
+        function disableLetterButton(letter) {
+            const buttons = alphabetContainer.getElementsByClassName("letter");
+            for (let button of buttons) {
+                if (button.textContent === letter) {
+                    button.disabled = true;
+                    break;
+                }
+            }
+        }
+        
+        // Đánh dấu nút chữ cái là đúng hoặc sai
+        function highlightLetterButton(letter, type) {
+            const buttons = alphabetContainer.getElementsByClassName("letter");
+            for (let button of buttons) {
+                if (button.textContent === letter) {
+                    button.classList.add(type);
+                    setTimeout(() => {
+                        button.classList.remove(type);
+                    }, 1000);
+                    break;
+                }
+            }
+        }
+        
+        // Vô hiệu hóa tất cả nút chữ cái
+        function disableAllLetterButtons() {
+            const buttons = alphabetContainer.getElementsByClassName("letter");
+            for (let button of buttons) {
+                button.disabled = true;
+            }
+        }
+        
+        // Cập nhật giao diện
+        function updateUI() {
+            scoreElement.textContent = score;
+            levelElement.textContent = level;
+            wrongAttemptsElement.textContent = `${wrongAttempts}/${maxWrongAttempts}`;
+        }
+        
+        // Cập nhật hình treo cổ
+        function updateHangman() {
+            // Hiển thị phần hình treo cổ tương ứng với số lần sai
+            for (let i = 0; i < wrongAttempts + 2; i++) {
+                if (i < hangmanParts.length) {
+                    hangmanParts[i].style.display = "block";
+                }
+            }
+        }
+        
+        // Reset hình treo cổ
+        function resetHangman() {
+            // Ẩn tất cả các phần trừ base và pole
+            for (let i = 2; i < hangmanParts.length; i++) {
+                hangmanParts[i].style.display = "none";
+            }
+        }
+        
+        // Sử dụng gợi ý
+        function useHint() {
+            if (hintUsed) {
+                alert("Bạn đã sử dụng gợi ý cho từ này rồi!");
+                return;
+            }
+            
+            clickSound();
+            
+            // Tìm một chữ cái chưa được đoán trong từ
+            const unguessedLetters = currentWord.split("").filter(letter => 
+                !guessedLetters.includes(letter)
+            );
+            
+            if (unguessedLetters.length > 0) {
+                const randomLetter = unguessedLetters[Math.floor(Math.random() * unguessedLetters.length)];
+                handleGuess(randomLetter);
+                hintUsed = true;
+                hintButton.disabled = true;
+            }
+        }
+        
+        // Bỏ qua từ hiện tại
+        function skipWord() {
+            clickSound();
+            if (confirm("Bạn có chắc chắn tiếp tục?")) {
+                initGame();
+            }
+        }
+        
+        // Tạo hiệu ứng confetti
+        function createConfetti() {
+            const container = document.querySelector('.container');
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = getRandomColor();
+                confetti.style.animation = `confettiFall ${Math.random() * 3 + 2}s linear forwards`;
+                container.appendChild(confetti);
+                
+                // Xóa confetti sau khi animation kết thúc
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // Lấy màu ngẫu nhiên cho confetti
+        function getRandomColor() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff9900'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // Bật/tắt âm thanh
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = soundControl.querySelector('i');
+            if (soundEnabled) {
+                icon.className = 'fas fa-volume-up';
+                soundControl.style.background = 'rgba(255, 255, 255, 0.3)';
+                // Phát âm thanh test khi bật âm thanh
+                clickSound();
+            } else {
+                icon.className = 'fas fa-volume-mute';
+                soundControl.style.background = 'rgba(255, 0, 0, 0.3)';
+            }
+        }
+        
+        // Sự kiện khi nhấn nút
+        hintButton.addEventListener("click", useHint);
+        skipButton.addEventListener("click", skipWord);
+        resetButton.addEventListener("click", () => {
+            clickSound();
+            score = 0;
+            level = 1;
+            initGame();
         });
-
-        let countTai = outputs.filter(r => r.type === 'Tài').length;
-        let countXiu = outputs.filter(r => r.type === 'Xỉu').length;
-        let total = countTai + countXiu;
-        let percentTai = ((countTai / total) * 100).toFixed(1);
-        let percentXiu = ((countXiu / total) * 100).toFixed(1);
-
-        let lastDigit = md5.slice(-1).toUpperCase();
-        let finalSuggest = countTai > countXiu ? '🎯 Tài' : (countXiu > countTai ? '❄️ Xỉu' : 'Không rõ');
-
-        resultBox.innerHTML = `
-          <div><strong>🎰 Kết Quả Phân Tích MD5 🎰</strong></div>
-          <div><strong>🔍 MD5 Hash:</strong> ${md5}</div>
-          <div><strong>🎲 Số cuối MD5:</strong> ${lastDigit}</div>
-          <div><strong>⚖️ Kết Quả:</strong> ${finalSuggest}</div>
-          <div><strong>📊 Xác suất:</strong></div>
-          <div>- 🎯 Tài: ${percentTai}%</div>
-          <div>- ❄️ Xỉu: ${percentXiu}%</div>
-          <br>
-          <div>📩 Nhập MD5 khác để tiếp tục!</div>
-        `;
-
-        resetButton();
-      }, 1500);
-    }
-
-    function resetButton() {
-      const button = document.querySelector("button");
-      button.disabled = false;
-      button.classList.remove("loading");
-      button.textContent = "🚀 Phân tích";
-    }
-  </script>
+        
+        soundControl.addEventListener("click", toggleSound);
+        
+        // Khởi động game khi trang được tải
+        window.addEventListener("load", initGame);
+        
+        // Thêm thông báo về âm thanh
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                if (soundEnabled) {
+                    clickSound();
+                    setTimeout(function() {
+                        correctSound();
+                    }, 200);
+                }
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
